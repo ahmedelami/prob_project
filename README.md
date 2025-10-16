@@ -31,3 +31,17 @@ for k = 51:53
     fprintf('Continuous: u%02d = %.4f -> X = %.4f s\n', k, u(k), xk);
 end
 ```
+
+## Short Version
+```matlab
+x0 = 1000; a = 24693; c = 3517; K = 2^17; N = 60;
+u = zeros(N,1); x = x0;
+for i = 1:N
+    x = mod(a*x + c, K);
+    u(i) = x / K;
+end
+u = round(u, 4);
+fprintf('first3: %.4f, %.4f, %.4f\n', u(1), u(2), u(3));
+fprintf('u51=%.4f\nu52=%.4f\nu53=%.4f\n', u(51), u(52), u(53));
+
+```
